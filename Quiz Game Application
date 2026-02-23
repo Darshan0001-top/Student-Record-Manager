@@ -1,0 +1,67 @@
+import sys
+
+def run_quiz():
+    # Question pool: A list of dictionaries for easy expansion
+    questions = [
+        {
+            "prompt": "What is the correct extension for a Python file?",
+            "options": ["A. .pyt", "B. .py", "C. .pt", "D. .pyw"],
+            "answer": "B"
+        },
+        {
+            "prompt": "Which data structure uses 'Last-In, First-Out' (LIFO)?",
+            "options": ["A. Queue", "B. List", "C. Stack", "D. Dictionary"],
+            "answer": "C"
+        },
+        {
+            "prompt": "What does CLI stand for?",
+            "options": ["A. Command Line Interface", "B. Common Language Input", "C. Central Logic Index", "D. Control Line Integration"],
+            "answer": "A"
+        },
+        {
+            "prompt": "Which of these is NOT a keyword in Python?",
+            "options": ["A. yield", "B. lambda", "C. pass", "D. function"],
+            "answer": "D"
+        },
+        {
+            "prompt": "What is the output of 2 ** 3?",
+            "options": ["A. 6", "B. 8", "C. 9", "D. 5"],
+            "answer": "B"
+        }
+    ]
+
+    while True:
+        score = 0
+        print("\n" + "="*30)
+        print(" WELCOME TO THE TECH QUIZ ")
+        print("="*30)
+
+        for i, q in enumerate(questions, 1):
+            print(f"\nQuestion {i}: {q['prompt']}")
+            for option in q['options']:
+                print(option)
+            
+            # Input handling with basic normalization
+            guess = input("Your answer (A, B, C, or D): ").strip().upper()
+
+            if guess == q['answer']:
+                print("✅ Correct!")
+                score += 1
+            else:
+                print(f"❌ Incorrect. The correct answer was {q['answer']}.")
+
+        # Final Results
+        print("\n" + "-"*30)
+        print(f"QUIZ OVER! Your Final Score: {score}/{len(questions)}")
+        percentage = (score / len(questions)) * 100
+        print(f"Grade: {percentage}%")
+        print("-"*30)
+
+        # Restart Logic
+        play_again = input("Would you like to try again? (yes/no): ").lower()
+        if play_again != 'yes' and play_again != 'y':
+            print("Thanks for playing! Goodbye.")
+            break
+
+if __name__ == "__main__":
+    run_quiz()
